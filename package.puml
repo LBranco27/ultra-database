@@ -1,0 +1,47 @@
+@startuml
+!theme amiga 
+
+' exemplo: atividade de pacotes de es
+package com.gitblit{
+	
+	class FileSettings
+	class GitBlit
+	class IStoredSettings
+
+	package guice {
+		class CoreModule
+	}
+
+	package transport {
+		package ssh {
+			class IPublicKeyManager
+		}
+	}
+
+	package utils {
+		class JSoupXssFilter
+			class WorkQueue
+			class XssFilter
+	}
+	
+	package tests {
+	}
+
+	package servlet {
+	}
+}
+
+CoreModule ..> GitBlit : import
+CoreModule ..> FileSettings : import
+CoreModule ..> IStoredSettings : import
+CoreModule ..> IPublicKeyManager : import
+CoreModule ..> JSoupXssFilter : import
+CoreModule ..> WorkQueue : import
+CoreModule ..> XssFilter : import
+
+GitBlit ..> IPublicKeyManager : import
+
+tests ..> guice
+servlet <..> guice
+
+@enduml
