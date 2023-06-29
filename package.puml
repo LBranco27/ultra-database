@@ -1,47 +1,59 @@
 @startuml
 !theme amiga 
 
-' exemplo: atividade de pacotes de es
-package com.gitblit{
-	
-	class FileSettings
-	class GitBlit
-	class IStoredSettings
-
-	package guice {
-		class CoreModule
-	}
-
-	package transport {
-		package ssh {
-			class IPublicKeyManager
-		}
-	}
-
-	package utils {
-		class JSoupXssFilter
-			class WorkQueue
-			class XssFilter
-	}
-	
-	package tests {
-	}
-
-	package servlet {
-	}
+entity "Universidade" as uni {
+        ** *uni_id : number <<generated>> **
+        --
+        *name : text
 }
 
-CoreModule ..> GitBlit : import
-CoreModule ..> FileSettings : import
-CoreModule ..> IStoredSettings : import
-CoreModule ..> IPublicKeyManager : import
-CoreModule ..> JSoupXssFilter : import
-CoreModule ..> WorkQueue : import
-CoreModule ..> XssFilter : import
+entity "Sala" as sala {
+        ** *sala_id : number <<generated>> **
+        --
+        *name : text
+}
 
-GitBlit ..> IPublicKeyManager : import
+entity "Prédio" as predio {
+        ** *predio_id : number <<generated>> **
+        --
+        *name : text
+}
 
-tests ..> guice
-servlet <..> guice
+entity "Departamento" as dep {
+        ** *dep_id : number <<generated>> **
+        --
+        *name : text
+}
 
+entity "Curso" as curso {
+        ** *curso_id : number <<generated>> **
+        --
+        *name : text
+}
+
+entity "Instrutor" as instrutor {
+        ** *instrutor_id : number <<generated>> **
+        --
+        *name : text
+}
+
+entity "Seção" as secao {
+        ** *secao_id : number <<generated>> **
+        --
+        *name : text
+}
+
+entity "Ministração" as minis {
+        ** *minis_id : number <<generated>> **
+        --
+        *name : text
+}
+
+entity "Aluno" as aluno {
+        ** *aluno_id : number <<generated>> **
+        --
+        *name : text
+}
+
+uni ||--o{ sala
 @enduml
